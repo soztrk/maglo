@@ -10,23 +10,25 @@ import SignIn from "./pages/SignIn"
 import SignUp from "./pages/SignUp"
 import Dashboard from "./pages/Dashboard"
 
-// Authentication
+// Authentication check
 const isAuthenticated = () => {
   return false
 }
 
+// Route protection for authentication
 const ProtectedRoute = () => 
 {
   if(isAuthenticated()) return <Outlet/>
   else return <Navigate to="signin" replace />
 }
 
-
+// Error handeling for not found error
 function ErrorBoundary()
 {
   return <p>Error is happened</p>
 }
 
+// Router
 const router = createBrowserRouter([
   {
     path:"/",
@@ -42,9 +44,6 @@ const router = createBrowserRouter([
     Component: SignUp
   },
   {
-    /* path:"/dashboard",
-    loader:protectedLoader,
-    Component:DashboardPage, */
     element:<ProtectedRoute />,
     children:
     [
