@@ -1,0 +1,31 @@
+.signLink {
+
+    display:flex;
+    margin-top:10px;
+    align-items: center;
+    justify-content: center;
+
+    p{
+        font-weight:400;
+        font-size:14px;
+        color:$textColor_2;
+    }
+
+    a{
+        font-size: 14px;
+        font-weight:500;
+        color:$textColor_1;
+        margin-left:5px;
+        text-decoration: none;
+        position: relative;
+
+        &::after{
+            position: absolute;
+            bottom:-15px;
+            left:0;
+            content: url("/img/line.svg");
+        }
+    }
+
+}
+
