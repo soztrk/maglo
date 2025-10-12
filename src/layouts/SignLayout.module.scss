@@ -37,7 +37,11 @@
             display: flex;
             justify-self: center;
             align-self: center;
-            
+            min-width:404px;
+
+            @media (max-width:$sm) {
+                min-width: 80%;
+            }
         }
     }
 
