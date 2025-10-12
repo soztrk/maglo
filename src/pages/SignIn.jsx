@@ -8,6 +8,7 @@ import {useState,useEffect} from "react"
 import toast from 'react-hot-toast'
 import useInput from "../hooks/useInput"
 import SignLink from "../components/SignLink"
+import HeaderGroup from "../components/HeaderGroup"
 
 const SignIn = () => {
 
@@ -88,10 +89,10 @@ const SignIn = () => {
     return (
         <SignLayout>
             <div className={style.signInForm}>
-                <div className={style.headerGroup}>
-                    <h1>Sign In</h1>
-                    <h2>Welcome back! Please enter your details</h2>
-                </div>
+                <HeaderGroup 
+                    title="Sign In"
+                    subTitle="Welcome back! Please enter your details"
+                />
                 <form onSubmit={handleSubmit} noValidate>
                     <TextField
                         id="email" 
