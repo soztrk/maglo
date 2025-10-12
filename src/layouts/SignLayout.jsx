@@ -1,4 +1,5 @@
 import style from "./SignLayout.module.scss"
+import { Toaster } from 'react-hot-toast'
 
 const SignLayout = ({children}) => {
     return (
@@ -19,6 +20,10 @@ const SignLayout = ({children}) => {
                     </div>
                 </div>
             </section>
+            <Toaster
+                position="bottom-left"
+                reverseOrder={false}
+                />
         </main>
     )
 }
