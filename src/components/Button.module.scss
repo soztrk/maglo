@@ -1,0 +1,50 @@
+.button
+{
+    margin-top:10px;
+
+    // Themes
+    
+    &.green button{
+        background-color:$primaryColor;
+        border:none;
+        color:#1B212D;
+    }
+
+    &.gray button{
+        background-color: #fff;
+        border:1px solid #F5F5F5;
+        color:#78778B;
+    }
+
+    button {
+        display: flex;
+        justify-content: center;
+        
+        font-size: 16px;
+        font-weight:600;
+        border-radius: 10px;
+        padding:14px 20px;
+        width:100%;
+        transition: transform 0.2s ease;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &:active:not(:disabled) {
+            transform: scale(0.9)
+        }
+
+        &:disabled {
+            opacity: 0.5;
+        }
+
+        img {
+            margin-right:10px;
+        }
+
+        span {
+            margin-right:10px;
+        }
+    }
+}
