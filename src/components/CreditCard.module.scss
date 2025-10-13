@@ -1,0 +1,45 @@
+.creditCard {
+
+    width:354px;
+    height:210px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding:30px;
+    color:#fff;
+
+    h3{
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .middle{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .bottom{
+        display: flex;
+        justify-content: space-between;
+
+        div {
+            .cardNumber{
+                font-family:'Courier New', Courier, monospace;
+                font-size: 17px;
+                font-weight: 700;
+            }
+            .expireDate{
+                font-family: 'Courier New', Courier, monospace;
+                font-size: 14px;
+                font-weight: 500;
+            }
+        }
+
+        img{
+            width:48px;
+            height:36px;
+        }
+    }
+}
