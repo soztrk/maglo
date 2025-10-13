@@ -1,0 +1,52 @@
+.navigation {
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+    height: 80%;
+    margin-top:30px;
+    justify-self: center;
+
+    nav {
+        list-style: none;
+        width:200px;
+
+        li {
+            a,button {
+                background-color:rgba(0,0,0,0);
+                border:none;
+                display: flex;
+                text-decoration: none;
+                padding:14px 15px;
+                width:100%;
+                cursor: pointer;
+
+                span {
+                    font-size: 14px;
+                    font-weight: 600;
+                    color:$textColor_2;
+                    margin-left:10px;
+                }
+
+                &:hover, &.active {
+                    background-color: $primaryColor;
+                    border-radius: 8px;
+
+                    span {
+                        color:$textColor_1;
+                    }
+                }
+            }
+
+        }
+
+        &.navTop{
+        flex-grow: 1;
+        }
+
+        /* &.navBottom{
+            
+        } */
+    }
+}
