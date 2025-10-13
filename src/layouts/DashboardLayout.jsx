@@ -4,15 +4,9 @@ import { Toaster } from 'react-hot-toast'
 import Logo from "../components/Logo"
 import HeaderLine from "../components/HeaderLine"
 import {useState} from "react"
+import Nav from "../components/Nav"
 
 // Icons
-import help_icon from "../assets/img/help_icon.svg"
-import home_icon from "../assets/img/home_icon.svg"
-import invoice_icon from "../assets/img/invoice_icon.svg"
-import logout_icon from "../assets/img/logout_icon.svg"
-import settings_icon from "../assets/img/settings_icon.svg"
-import trans_icon from "../assets/img/trans_icon.svg"
-import wallet_icon from "../assets/img/wallet_icon.svg"
 import bell_icon from "../assets/img/bell_icon.svg"
 import search_icon from "../assets/img/search_icon.svg"
 import dropdown_icon from "../assets/img/dropdown_icon.svg"
@@ -33,54 +27,7 @@ const DashboardLayout = ({header={absolute:false,sticky:true,offest:100},cards,c
         <div className={style.dashboardLayout}>
             <aside className={mobileNavActive?style.active:""}>
                 <Logo />
-                <div className={style.navigation}>
-                    <nav className={style.navTop}>
-                        <li>
-                            <a href="#" className={style.active}>
-                                <img src={home_icon} />
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src={trans_icon} />
-                                <span>Transactions</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src={invoice_icon} />
-                                <span>Invoices</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src={wallet_icon} />
-                                <span>My Wallets</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src={settings_icon} />
-                                <span>Settings</span>
-                            </a>
-                        </li>
-                    </nav>
-                    <nav className={style.navBottom}>
-                        <li>
-                            <a href="#">
-                                <img src={help_icon} />
-                                <span>Help</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src={logout_icon} />
-                                <span>Loguot</span>
-                            </a>
-                        </li>
-                    </nav>
-                </div>
+                <Nav />
             </aside>
             <div className={style.content}>
                 <StickyHeader

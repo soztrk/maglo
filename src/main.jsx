@@ -2,6 +2,7 @@ import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import { createBrowserRouter, Navigate, Outlet } from "react-router"
 import { RouterProvider } from "react-router/dom"
+import { getAccessToken } from "./helpers/auth"
 
 import "./styles/index.scss"
 
@@ -12,36 +13,49 @@ import Dashboard from "./pages/Dashboard"
 
 // Authentication check
 const isAuthenticated = () => {
-  return false
+  return getAccessToken() != null
 }
 
 // Route protection for authentication
 const ProtectedRoute = () => 
 {
   if(isAuthenticated()) return <Outlet/>
-  else return <Navigate to="signin" replace />
+  else return <Navigate to="/signin" replace />
+}
+
+// Public Routes
+const UnprotectedRoute = () => 
+{
+  if(!isAuthenticated()) return <Outlet/>
+  else return <Navigate to="/dashboard" replace />
 }
 
 // Error handeling for not found error
 function ErrorBoundary()
 {
-  return <p>Error is happened</p>
+  return <p>404 not found</p>
 }
 
 // Router
 const router = createBrowserRouter([
   {
     path:"/",
-    element: <Navigate to="/signin" replace />,
+    element: isAuthenticated ? <Navigate to="/dashboard" replace /> : <Navigate to="/signin" replace />,
     errorElement: <ErrorBoundary />
   },
   {
-    path:"/signin",
-    Component: SignIn
-  },
-  {
-    path:"/signup",
-    Component: SignUp
+    element:<UnprotectedRoute />,
+    children:
+    [
+      {
+      path:"/signin",
+      Component: SignIn
+      },
+      {
+        path:"/signup",
+        Component: SignUp
+      }
+    ]
   },
   {
     element:<ProtectedRoute />,

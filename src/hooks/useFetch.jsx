@@ -13,7 +13,8 @@ const useFetch = () => {
             let headers = {}
 
             headers["Content-Type"] = "application/json"
-            if(config.xsrf) headers["X-XSRF-TOKEN"] = config.xsrf
+
+            if(config.apiKey) headers["Authorization"] = "Bearer "+config.apiKey
 
             const response = await fetch(config.url,{
                 method:config.method ? config.method : "GET",
@@ -31,7 +32,7 @@ const useFetch = () => {
 
         } catch(error)
         {
-            setMessage("An error occurred. Please try again later.")
+            console.log(error);
         }
 
         setLoading(false)

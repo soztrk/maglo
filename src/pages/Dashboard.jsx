@@ -5,14 +5,160 @@ import DataTable from "../components/DataTable"
 import SimpleBar from "../components/SimpleBar"
 import HeaderLine from "../components/HeaderLine"
 import CreditCard from "../components/CreditCard"
+import useFetch from "../hooks/useFetch"
+import {useState,useEffect} from "react"
+import { getAccessToken } from "../helpers/auth"
+import currency from "currency.js"
+import moment from "moment"
+import toast from 'react-hot-toast'
+
 
 // Icon Images
 import wallet_green_icon from "../assets/img/wallet_green_icon.svg"
 import wallet_saved_icon from "../assets/img/wallet_saved_icon.svg"
 import wallet_spend_icon from "../assets/img/wallet_spend_icon.svg"
 
-const Dashboard = () => 
-{
+const Dashboard = () => {
+
+    const [summary,setSummary] = useState()
+    const [workingCapital,setWorkingCapital] = useState()
+    const [recentTransactions,setRecentTransactions] = useState()
+    const [scheduledTransfers,setScheduledTransfers] = useState()
+    const [wallet,setWallet] = useState()
+
+    const {
+        loading:summaryLoading,
+        sendRequest:summaryRequest
+    } = useFetch()
+
+    const {
+        loading:workingCapitalLoading,
+        sendRequest:workingCapitalRequest
+    } = useFetch()
+
+    const {
+        loading:recentTransactionsLoading,
+        sendRequest:recentTransactionsRequest
+    } = useFetch()
+
+    const {
+        loading:scheduledTransformsLoading,
+        sendRequest:scheduledTransfersRequest
+    } = useFetch()
+
+    const {
+        loading:walletLoading,
+        sendRequest:walletRequest
+    } = useFetch()
+
+    useEffect(()=>{
+        
+        // Summary
+        summaryRequest(
+                {
+                    url:`https://case.nodelabs.dev/api/financial/summary`,
+                    method:"GET",
+                    apiKey:getAccessToken(),
+                },
+                response=>{
+                    if(response.success){
+                        setSummary(response.data)
+                        toast.success(response.message)
+                    }
+                    else{
+                        toast.error(response.message)
+                    }
+                }
+            )
+
+        // Working Capital
+        workingCapitalRequest(
+                {
+                    url:`https://case.nodelabs.dev/api/financial/working-capital
+`,
+                    method:"GET",
+                    apiKey:getAccessToken(),
+                },
+                response=>{
+
+                    if(response.success){
+
+                        let result = {pData:[],uData:[],xLabels:[],currency:response.data.currency}
+                        
+                        response.data.data.forEach(val=>{
+                            result.pData.push(currency(val.income))
+                            result.uData.push(currency(val.expense))
+                            result.xLabels.push(val.month)
+                        })
+
+                        setWorkingCapital(result)
+                        toast.success(response.message)
+                    }
+                    else{
+                        toast.error(response.message)
+                    }
+                }
+            )
+        
+        // Recent Transactions
+        recentTransactionsRequest(
+                {
+                    url:`https://case.nodelabs.dev/api/financial/transactions/recent`,
+                    method:"GET",
+                    apiKey:getAccessToken(),
+                },
+                response=>{
+
+                    if(response.success){
+                        setRecentTransactions(response.data.transactions)
+                        toast.success(response.message)
+                    }
+                    else{
+                        toast.error(response.message)
+                    }
+                }
+            )
+        
+        // Scheduled TRansaction
+        scheduledTransfersRequest(
+                {
+                    url:`https://case.nodelabs.dev/api/financial/transfers/scheduled`,
+                    method:"GET",
+                    apiKey:getAccessToken(),
+                },
+                response=>{
+
+                    if(response.success){
+                        setScheduledTransfers(response.data.transfers)
+                        toast.success(response.message)
+                    }
+                    else{
+                        toast.error(response.message)
+                    }
+                }
+            )
+
+        // Scheduled TRansaction
+        walletRequest(
+                {
+                    url:`https://case.nodelabs.dev/api/financial/wallet`,
+                    method:"GET",
+                    apiKey:getAccessToken(),
+                },
+                response=>{
+
+                    if(response.success){
+                        setWallet(response.data.cards[0])
+                        //toast.success(response.message)
+                    }
+                    else{
+                        //toast.error(response.message)
+                    }
+                }
+            )
+
+    },[])
+
     return (
         <DashboardLayout 
             cards={
@@ -20,18 +166,18 @@ const Dashboard = () =>
                     <Card 
                         icon={wallet_green_icon}
                         title="Total Balance"
-                        amount="$5240.21"
+                        amount={ summary ? currency(summary.totalBalance.amount)+" "+summary.totalBalance.currency : ""}
                         theme="dark"
                     />
                     <Card 
                         icon={wallet_spend_icon}
                         title="Total Spending"
-                        amount="$250.80"
+                        amount={ summary ? currency(summary.totalExpense.amount)+" "+summary.totalExpense.currency : ""}
                     />
                     <Card 
                         icon={wallet_saved_icon}
                         title="Total Saved"
-                        amount="$550.25"
+                        amount={ summary ? currency(summary.totalSavings.amount)+" "+summary.totalSavings.currency : ""}
                     />
                 </>
              }
@@ -39,50 +185,44 @@ const Dashboard = () =>
                 <Chart
                     title="Working Capital"
                     pLabel="Income"
-                    uLabel="Expenses" 
+                    uLabel="Expenses"
+                    data={workingCapital} 
                 />
              }
              recentTransaction={
                 <DataTable 
                 title="Recent Transactions"
-                data={[{
-                    id:"123456",
-                    name: "iPhone 13 Pro MAX",
-                    business: "Apple Inc.",
-                    image: "https://i.ibb.co/Apple-Logo.png",
-                    type: "Mobile",
-                    amount: -420.84,
-                    currency: "TRY",
-                    date: "2025-10-06T10:30:00.000Z",
-                    status: "completed"
-                }]}
+                data={recentTransactions}
                 />
              }
              wallet={
-                <CreditCard 
-                    bank="Maglo | Universal Bank"
-                    cardNumber= "5495 7381 3759 2321"
-                    expireDate="12/2027"
-                    network="Visa"
-                    color="#000000"
-                />
+                wallet &&
+                <>
+                    <CreditCard 
+                        bank={wallet.bank}
+                        cardNumber= {wallet.cardNumber}
+                        expireDate={wallet.expiryMonth+"/"+wallet.expiryYear}
+                        network={wallet.network}
+                        color={wallet.color}
+                    />
+                </>
+                
              }
              scheduledTransfers={
                 <>
                     <HeaderLine title="Scheduled Transfers" />
                     <div>
-                        <SimpleBar
-                            image="https://ui-avatars.com/api/?name=Saleh+Ahmed&background=random&size=100"
-                            name="Saleh Ahmed"
-                            date="2022-04-28T11:00:00Z"
-                            amount="- $435.00"
-                        />
-                        <SimpleBar
-                            image="https://ui-avatars.com/api/?name=Saleh+Ahmed&background=random&size=100"
-                            name="Saleh Ahmed"
-                            date="2022-04-28T11:00:00Z"
-                            amount="- $435.00"
-                        />
+                        { 
+                            scheduledTransfers && scheduledTransfers.map(val=>(
+                                <SimpleBar
+                                    key={val.id}
+                                    image={val.image}
+                                    name={val.name}
+                                    date={moment(val.date).format('Do MMMM YYYY, h:mm:ss a')} // human readable date format
+                                    amount={currency(val.amount)+" "+val.currency}
+                                />
+                            ))
+                        }
                     </div>
                 </>
              }

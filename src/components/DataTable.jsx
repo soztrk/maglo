@@ -1,5 +1,7 @@
 import style from "./DataTable.module.scss"
 import HeaderLine from "./HeaderLine"
+import currency from "currency.js"
+import moment from "moment"
 
 const DataTable = ({title,data}) => {
     return(
@@ -32,10 +34,10 @@ const DataTable = ({title,data}) => {
                                     <span className={style.grayText}>{value.type}</span>
                                 </td>
                                 <td>
-                                    <span className={style.darkText}>{value.amount}</span>
+                                    <span className={style.darkText}>{currency(value.amount)+" "+value.currency}</span>
                                 </td>
                                 <td>
-                                    <span className={style.grayText}>{value.date}</span>
+                                    <span className={style.grayText}>{moment(value.date).format('MMMM Do YYYY, h:mm:ss a')}</span>
                                 </td>
                             </tr>
                         ))
