@@ -1,0 +1,104 @@
+.dataTable {
+
+    border: 1px solid $borderColor_1;
+    border-radius: 10px;
+    margin-top:20px;
+    padding:20px;
+
+    .headerLine {
+
+        display: flex;
+        justify-content: space-between;
+        
+
+        h2{
+            font-size:18px;
+            font-weight: 600;
+            
+        }
+        a{
+            text-decoration: none;
+            font-size:14px;
+            font-weight: 600;
+            color:$secondaryColor;
+
+            img {
+                display: inline;
+                vertical-align:sub;
+            }
+        }
+    }
+
+    table{
+        border-collapse: collapse;
+        width: 100%;
+
+        tr {
+
+            border-bottom: 1px solid #ccc;
+
+            th {
+                text-align: left;
+                padding: 8px 12px;
+                font-size: 12px;
+                font-weight: 600;
+                color:$textColor_2;
+            }
+
+            td {
+                padding: 8px 12px;
+                text-align: left;
+
+                .name
+                {
+                    display: flex;
+                    align-items: center;
+
+                    img{
+                        width:40px;
+                        height:40px;
+                        margin-right:5px;
+                    }
+
+                    h5{
+                        color:$textColor_1;
+                        font-size:14px;
+                        font-weight:500;
+                    }
+
+                    p{
+                        color:$textColor_2;
+                        font-size:12px;
+                        font-weight:400;
+                        margin-top:2px;
+                    }
+                }
+
+                
+
+                .grayText{
+                    color:$textColor_2;
+                    font-size:14px;
+                    font-weight:500;
+                }
+
+                .darkText{
+                    color:$textColor_1;
+                    font-size:14px;
+                    font-weight:600;
+                }
+            }
+
+            &:last-child {
+                border-bottom:none;
+            }
+
+            th,td{
+                &:first-child,&:last-child{ 
+                    padding-left:0; padding-right:0;
+                }
+            }
+        }
+        
+    }
+}
