@@ -1,14 +1,12 @@
 import style from "./SignLayout.module.scss"
 import { Toaster } from 'react-hot-toast'
+import Logo from "../components/Logo"
 
 const SignLayout = ({children}) => {
     return (
         <main className={style.signLayout}>
             <section className={style.formSection}>
-                <div className={style.signLogo}>
-                    <img src="/img/maglo_logo.svg" alt="Maglo Logo" />
-                    <span>Maglo.</span>
-                </div>
+                <Logo />
                 <div className={style.signFormContainer}>
                     {children}
                 </div>
