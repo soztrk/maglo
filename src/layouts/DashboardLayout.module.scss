@@ -1,0 +1,221 @@
+.dashboardLayout
+{
+    padding-left:250px;
+    min-height: 100vh;
+    position: relative;
+    background-color: $color_7;
+
+    @media (max-width:$md) {
+            padding-left:0;
+
+            aside {
+                display: none;
+
+                &.active{
+                    display: block;
+                }
+            }
+        }
+
+    aside { 
+        background-color:$color_6;
+        position: fixed;
+        width:250px;
+        height:100%;
+        left:0;
+        top:0;
+        z-index:999;
+
+        .navigation {
+
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            align-content: space-between;
+            height: 80%;
+            margin-top:30px;
+            justify-self: center;
+
+            nav {
+                list-style: none;
+                width:200px;
+
+                li {
+                    a {
+                        display: flex;
+                        text-decoration: none;
+                        padding:14px 15px;
+
+                        span {
+                            font-size: 14px;
+                            font-weight: 600;
+                            color:$textColor_2;
+                            margin-left:10px;
+                        }
+
+                        &:hover, &.active {
+                            background-color: $primaryColor;
+                            border-radius: 8px;
+
+                            span {
+                                color:$textColor_1;
+                            }
+                        }
+                    }
+
+                }
+
+                &.navTop{
+                flex-grow: 1;
+                }
+
+                /* &.navBottom{
+                    
+                } */
+            }
+
+            
+        }
+    }
+
+    .content {
+
+        padding:20px 40px;
+
+        header {
+
+            .topBar{
+
+                display: flex;
+                margin-top: 22px;
+                margin-bottom: 22px;
+                padding-top:8px;
+                padding-bottom:8px;
+                background-color: $color_7;
+
+                @media (max-width:$md) {
+                            display: block;
+                        }
+
+                .barLeft{
+
+                    display: flex;
+                    align-items: center;
+                    width:35%;
+
+                    h1{
+                        font-size: 25px;
+                        font-weight: 600;
+                    }
+
+                    @media (max-width:$md) {
+                            justify-content: center;
+                            width:100%;
+                        }
+                }
+
+                .barRight{
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    gap:40px;
+                    width:65%;
+
+                    @media (max-width:$md) {
+                            justify-content: center;
+                            width:100%;
+                        }
+
+                    .userDropdown {
+
+                        display: flex;
+                        height:48px;
+                        border-radius: 100px;
+                        background-color:#FAFAFA;
+                        padding:6px 7px;
+                        align-items: center;
+                        
+
+                        > div {
+                            height: 36px;
+                            width: 36px;
+                            background-color:gray;
+                            border-radius: 50%;
+                            overflow: hidden;
+                        }
+
+                        > span {
+                            font-size: 14px;
+                            font-weight: 600;
+                            margin-left:10px;
+                            margin-right: 10px;
+                        }
+
+                        > img {
+                            width: 17px;
+                            height: 17px;
+                            margin: 8px;
+                        }
+                    }
+
+                    button.mobileNavButton{
+                        display: none;
+                        width:40px;
+                        height:40px;
+                        background-color: rgba(0,0,0,0);
+                        border:none;
+                        cursor: pointer;
+
+                        @media (max-width:$md) {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+
+        main {
+
+            display: grid;
+            grid-template-columns: 2fr minmax(354px,1fr);
+            justify-content: center;
+            gap:40px;
+
+            .centerBlock {
+                
+                .cards {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, 222px);
+                    gap:10px;
+                }
+
+                .chart{
+                    margin-top: 20px;
+                }
+            }
+
+            .rightBlock {
+
+                /* .wallet {
+                    
+                } */
+
+                .shtrans{
+                    margin-top:20px;
+                }
+
+            }
+
+            @media (max-width:$lg) {
+                display: block;
+
+                .rightBlock {
+                    margin-top:20px;
+                }
+            }
+
+        }
+    }
+
+}
