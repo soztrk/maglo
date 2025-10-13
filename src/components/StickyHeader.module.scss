@@ -1,0 +1,22 @@
+.sticky_header {
+
+    top: 0;
+    z-index: 110;
+    margin: 0 auto;
+    width: 100%;
+    
+    &.absolute_on{
+        position: absolute;
+    }
+
+    &.sticky_on{
+        position: sticky;
+	    top:0;
+	    z-index: 1001;
+        //backdrop-filter: blur(4px);
+
+        @media (min-width:$sm) {
+
+        }
+    }
+}
