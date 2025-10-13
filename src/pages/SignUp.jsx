@@ -1,5 +1,4 @@
 import SignLayout from "../layouts/SignLayout"
-import style from "./SignUp.module.scss"
 import TextField from "../components/TextField"
 import Button from "../components/Button"
 import Validator from "../helpers/validator"
@@ -101,7 +100,7 @@ const SignUp = () =>
 
     return (
         <SignLayout>
-            <div className={style.signUpForm}>
+            <div>
                 <HeaderGroup 
                     title="Create new account"
                     subTitle="Please enter your details to create an account"

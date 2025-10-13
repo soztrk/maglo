@@ -1,5 +1,4 @@
 import SignLayout from "../layouts/SignLayout"
-import style from "./SignIn.module.scss"
 import TextField from "../components/TextField"
 import Button from "../components/Button"
 import Validator from "../helpers/validator"
@@ -88,7 +87,7 @@ const SignIn = () => {
 
     return (
         <SignLayout>
-            <div className={style.signInForm}>
+            <div>
                 <HeaderGroup 
                     title="Sign In"
                     subTitle="Welcome back! Please enter your details"
