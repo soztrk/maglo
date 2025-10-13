@@ -1,0 +1,58 @@
+.card {
+    width:222px;
+    height: 105px;
+    background-color:$color_8;
+    border-radius: 10px;
+    padding: 24px 20px;
+    display: flex;
+    align-items: center;
+
+    .iconCanvas {
+
+        width:42px;
+        height: 42px;
+        display: flex;
+        background-color: $color_9;
+        border-radius: 50%;
+        justify-content: center;
+
+        img{
+            height: 20px;
+            width: 20px;
+            align-self: center;
+            justify-content: center;
+        }
+    }
+
+    .content{
+
+        margin-left:15px;
+
+        h3{
+            font-size: 14px;
+            font-weight: 400;
+            color:$textColor_2;
+        }
+
+
+        div{
+            font-size: 24px;
+            font-weight: 700;
+            color:$textColor_1;
+        }
+    }
+
+    &.dark{
+        background-color:$color_10;
+
+        .iconCanvas {
+            background-color: $color_11;
+        }
+
+        .content{
+            div{
+                color:$color_7;
+            }
+        }
+    }
+}
