@@ -1,0 +1,23 @@
+.headerLine {
+
+    display: flex;
+    justify-content: space-between;
+    margin-bottom:20px;
+
+    h2{
+        font-size:18px;
+        font-weight: 600;
+        
+    }
+    a{
+        text-decoration: none;
+        font-size:14px;
+        font-weight: 600;
+        color:$secondaryColor;
+
+        img {
+            display: inline;
+            vertical-align:sub;
+        }
+    }
+}
