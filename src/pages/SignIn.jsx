@@ -8,8 +8,12 @@ import toast from 'react-hot-toast'
 import useInput from "../hooks/useInput"
 import SignLink from "../components/SignLink"
 import HeaderGroup from "../components/HeaderGroup"
+import {useNavigate} from "react-router"
+import {setAccessToken} from "../helpers/auth"
 
 const SignIn = () => {
+
+    let navigate = useNavigate()
 
     const {
         value:emailValue,
@@ -53,13 +57,16 @@ const SignIn = () => {
                 },
                 response=>{
 
+                    resetForm()
+
                     if(response.success){
-                        toast.success("Success:"+response.message)
-                        // todo: navigate to dashboard
+                        toast.success(response.message)
+                        setAccessToken(response.data.accessToken)
+                        navigate("/")
                     }
                     else{
-                        toast.error("Error:"+response.message)
-                        resetForm()
+                        toast.error(response.message)
+                        
                     }
                 }
             )

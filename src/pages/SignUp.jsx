@@ -8,9 +8,12 @@ import toast from 'react-hot-toast'
 import useInput from "../hooks/useInput"
 import SignLink from "../components/SignLink"
 import HeaderGroup from "../components/HeaderGroup"
+import {useNavigate} from "react-router"
 
 const SignUp = () => 
 {
+    let navigate = useNavigate()
+
     const {
         value:nameValue,
         isDisabled:isNameDisabled,
@@ -63,13 +66,15 @@ const SignUp = () =>
                 },
                 response=>{
 
+                    resetForm()
+
                     if(response.success){
-                        toast.success("Success:"+response.message)
-                        // todo: navigate to dashboard
+                        toast.success(response.message)
+                        navigate("/signin")
                     }
                     else{
-                        toast.error("Error:"+response.message)
-                        resetForm()
+                        toast.error(response.message)
+                        
                     }
                 }
             )
