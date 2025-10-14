@@ -1,4 +1,5 @@
 import style from "./CreditCard.module.scss"
+import { ShimmerThumbnail } from "react-shimmer-effects";
 
 //icons
 import chip_icon from "../assets/img/chip_icon.svg"
@@ -6,8 +7,11 @@ import wifi_icon from "../assets/img/wifi_icon.svg"
 import mcard_icon from "../assets/img/mcard_icon.svg"
 import visa_icon from "../assets/img/visa_icon.svg"
 
-const CreditCard = ({bank,cardNumber,expireDate,network,color}) => {
+const CreditCard = ({bank,cardNumber,expireDate,network,color,loading}) => {
     return(
+        loading ?
+        <ShimmerThumbnail height={210} rounded />
+        :
         <div className={style.creditCard} style={{backgroundColor:color}}>
             <h3>{bank}</h3>
             <div className={style.middle}>

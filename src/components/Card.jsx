@@ -19,7 +19,7 @@ const Card = ({icon,title,amount,theme,loading,currency}) => {
             </div>
             <div className={style.content}>
                 <h3>{title}</h3>
-                <div>{currencyApp(amount).format()} {currency}</div>
+                <div>{currencyApp(amount,{symbol:currency,pattern:`# !`}).format()}</div>
             </div>
         </div>
     )

@@ -11,6 +11,7 @@ import { getAccessToken } from "../helpers/auth"
 import currency from "currency.js"
 import moment from "moment"
 import toast from 'react-hot-toast'
+import { ShimmerCategoryItem } from "react-shimmer-effects"
 
 
 // Icon Images
@@ -167,23 +168,23 @@ const Dashboard = () => {
                         loading={summaryLoading} 
                         icon={wallet_green_icon}
                         title="Total Balance"
-                        amount={summary && summary.totalBalance.amount}
-                        currency={summary && summary.totalBalance.currency}
+                        amount={summary?.totalBalance.amount}
+                        currency={summary?.totalBalance.currency}
                         theme="dark"
                     />
                     <Card
                         loading={summaryLoading} 
                         icon={wallet_spend_icon}
                         title="Total Spending"
-                        amount={summary && summary.totalExpense.amount}
-                        currency={summary && summary.totalExpense.currency}
+                        amount={summary?.totalExpense.amount}
+                        currency={summary?.totalExpense.currency}
                     />
                     <Card
                         loading={summaryLoading} 
                         icon={wallet_saved_icon}
                         title="Total Saved"
-                        amount={summary && summary.totalSavings.amount}
-                        currency={summary && summary.totalExpense.currency}
+                        amount={summary?.totalSavings.amount}
+                        currency={summary?.totalExpense.currency}
                     />
                 </>
              }
@@ -204,32 +205,54 @@ const Dashboard = () => {
                 />
              }
              wallet={
-                wallet &&
                 <>
-                    <CreditCard 
-                        bank={wallet.bank}
-                        cardNumber= {wallet.cardNumber}
-                        expireDate={wallet.expiryMonth+"/"+wallet.expiryYear}
-                        network={wallet.network}
-                        color={wallet.color}
+                    <CreditCard
+                        loading={walletLoading} 
+                        bank={wallet?.bank}
+                        cardNumber= {wallet?.cardNumber}
+                        expireDate={wallet?.expiryMonth+"/"+wallet?.expiryYear}
+                        network={wallet?.network}
+                        color={wallet?.color}
                     />
                 </>
                 
              }
              scheduledTransfers={
+
+                scheduledTransformsLoading ?
+
+                <>
+                    {
+                        [1,2,3].map(()=>(
+                            <ShimmerCategoryItem
+                            hasImage
+                            imageType="circular"
+                            imageWidth={33}
+                            imageHeight={33}
+                            title
+                            />
+                        ))
+                    }
+                </>
+                    :
                 <>
                     <HeaderLine title="Scheduled Transfers" />
                     <div>
                         { 
-                            scheduledTransfers && scheduledTransfers.map(val=>(
-                                <SimpleBar
-                                    key={val.id}
-                                    image={val.image}
-                                    name={val.name}
-                                    date={moment(val.date).format('MMMM Do YYYY, h:mm:ss a')}
-                                    amount={currency(val.amount).format()+" "+val.currency}
-                                />
-                            ))
+                            scheduledTransfers?.map(value=>(
+                            <SimpleBar
+                                key={value.id}
+                                image={value.image}
+                                name={value.name}
+                                date={moment(value.date).format('MMMM Do YYYY, h:mm:ss a')}
+                                amount={currency(value.amount,{
+                                                            symbol:value.currency,
+                                                            pattern:`# !`,
+                                                            negativePattern: `-# !`
+                                                        }).format()}
+                                
+                            />
+                                ))
                         }
                     </div>
                 </>
