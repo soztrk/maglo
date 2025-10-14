@@ -1,9 +1,13 @@
 import style from "./Chart.module.scss"
 import Box from '@mui/material/Box';
 import { LineChart } from '@mui/x-charts/LineChart';
+import { ShimmerThumbnail } from "react-shimmer-effects";
 
-const Chart = ({title,pLabel,uLabel,data={pData:[5000],uData:[2500],xLabels:["Label"]}}) => {
+const Chart = ({title,pLabel,uLabel,data={pData:[5000],uData:[2500],xLabels:["Label"]},loading}) => {
     return(
+        loading?
+        <ShimmerThumbnail height={300} rounded />
+        :
         <div className={style.chart}>
             <h2>{title}</h2>
             <Box sx={{ width: '100%', height: 300 }}>

@@ -186,6 +186,7 @@ const Dashboard = () => {
              }
              chart={
                 <Chart
+                    loading={workingCapitalLoading}
                     title="Working Capital"
                     pLabel="Income"
                     uLabel="Expenses"
