@@ -2,9 +2,35 @@ import style from "./DataTable.module.scss"
 import HeaderLine from "./HeaderLine"
 import currency from "currency.js"
 import moment from "moment"
+import { ShimmerCategoryItem } from "react-shimmer-effects";
 
-const DataTable = ({title,data}) => {
+const DataTable = ({title,data,loading}) => {
     return(
+        loading ?
+        <>
+            <ShimmerCategoryItem
+                hasImage
+                imageType="circular"
+                imageWidth={50}
+                imageHeight={50}
+                title
+            />
+            <ShimmerCategoryItem
+                hasImage
+                imageType="circular"
+                imageWidth={50}
+                imageHeight={50}
+                title
+            />
+            <ShimmerCategoryItem
+                hasImage
+                imageType="circular"
+                imageWidth={50}
+                imageHeight={50}
+                title
+            />
+        </>
+        :
         <div className={style.dataTable}>
             <HeaderLine title={title} />
             <table>

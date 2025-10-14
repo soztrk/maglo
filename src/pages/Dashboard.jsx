@@ -194,7 +194,8 @@ const Dashboard = () => {
                 />
              }
              recentTransaction={
-                <DataTable 
+                <DataTable
+                loading={recentTransactionsLoading} 
                 title="Recent Transactions"
                 data={recentTransactions}
                 />
