@@ -1,13 +1,36 @@
 .creditCard {
 
-    width:354px;
-    height:210px;
+    // themes
+    &.dark{
+        background: #4A4A49;
+        background: linear-gradient(90deg,rgba(74, 74, 73, 1) 0%, rgba(32, 32, 31, 1) 50%);
+        color:#fff;
+        width:354px;
+        height:210px;
+        padding:30px;
+    }
+
+    &.transparent{
+        backdrop-filter: blur(100px);
+        -webkit-backdrop-filter: blur(100px); /* Safari support */
+        background-color: rgba(255, 255, 255, 0.2); /* semi-transparent */
+        
+        width:324px;
+        height:172px;
+        margin-top: -50px;
+        margin-left:15px;
+        padding:20px;
+
+        h3{
+            color:#fff;
+        }
+    }
+
+    
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding:30px;
-    color:#fff;
 
     h3{
         font-size: 16px;

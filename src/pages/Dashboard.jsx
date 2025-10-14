@@ -25,7 +25,7 @@ const Dashboard = () => {
     const [workingCapital,setWorkingCapital] = useState()
     const [recentTransactions,setRecentTransactions] = useState()
     const [scheduledTransfers,setScheduledTransfers] = useState()
-    const [wallet,setWallet] = useState()
+    const [wallet,setWallet] = useState([0,1])
 
     const {
         loading:summaryLoading,
@@ -139,7 +139,7 @@ const Dashboard = () => {
                 }
             )
 
-        // Scheduled TRansaction
+        // Wallet
         walletRequest(
                 {
                     url:`https://case.nodelabs.dev/api/financial/wallet`,
@@ -149,11 +149,11 @@ const Dashboard = () => {
                 response=>{
 
                     if(response.success){
-                        setWallet(response.data.cards[0])
-                        //toast.success(response.message)
+                        setWallet(response.data.cards.slice(0,2))
+                        toast.success(response.message)
                     }
                     else{
-                        //toast.error(response.message)
+                        toast.error(response.message)
                     }
                 }
             )
@@ -205,14 +205,25 @@ const Dashboard = () => {
                 />
              }
              wallet={
+                wallet &&
                 <>
                     <CreditCard
+                        key={wallet[0]?.id}
                         loading={walletLoading} 
-                        bank={wallet?.bank}
-                        cardNumber= {wallet?.cardNumber}
-                        expireDate={wallet?.expiryMonth+"/"+wallet?.expiryYear}
-                        network={wallet?.network}
-                        color={wallet?.color}
+                        bank={wallet[0]?.bank}
+                        cardNumber= {wallet[0]?.cardNumber}
+                        expireDate={wallet[0]?.expiryMonth+"/"+wallet[0]?.expiryYear}
+                        network={wallet[0]?.network}
+                        theme="dark"
+                    />
+                    <CreditCard
+                        key={wallet[1]?.id}
+                        loading={walletLoading} 
+                        bank={wallet[1]?.bank}
+                        cardNumber= {wallet[1]?.cardNumber}
+                        expireDate={wallet[1]?.expiryMonth+"/"+wallet[1]?.expiryYear}
+                        network={wallet[1]?.network}
+                        theme="transparent"
                     />
                 </>
                 
@@ -223,8 +234,9 @@ const Dashboard = () => {
 
                 <>
                     {
-                        [1,2,3].map(()=>(
+                        ["sht1","sht2","sht3"].map((val)=>(
                             <ShimmerCategoryItem
+                            key={val}
                             hasImage
                             imageType="circular"
                             imageWidth={33}

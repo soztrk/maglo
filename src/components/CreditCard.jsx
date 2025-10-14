@@ -7,12 +7,12 @@ import wifi_icon from "../assets/img/wifi_icon.svg"
 import mcard_icon from "../assets/img/mcard_icon.svg"
 import visa_icon from "../assets/img/visa_icon.svg"
 
-const CreditCard = ({bank,cardNumber,expireDate,network,color,loading}) => {
+const CreditCard = ({bank,cardNumber,expireDate,network,theme,loading}) => {
     return(
         loading ?
         <ShimmerThumbnail height={210} rounded />
         :
-        <div className={style.creditCard} style={{backgroundColor:color}}>
+        <div className={[style.creditCard, theme == "transparent" ? style.transparent : style.dark].join(" ")}>
             <h3>{bank}</h3>
             <div className={style.middle}>
                 <img src={chip_icon} />
