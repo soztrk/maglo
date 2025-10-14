@@ -163,18 +163,21 @@ const Dashboard = () => {
         <DashboardLayout 
             cards={
                 <>
-                    <Card 
+                    <Card
+                        loading={summaryLoading} 
                         icon={wallet_green_icon}
                         title="Total Balance"
                         amount={ summary ? currency(summary.totalBalance.amount)+" "+summary.totalBalance.currency : ""}
                         theme="dark"
                     />
-                    <Card 
+                    <Card
+                        loading={summaryLoading} 
                         icon={wallet_spend_icon}
                         title="Total Spending"
                         amount={ summary ? currency(summary.totalExpense.amount)+" "+summary.totalExpense.currency : ""}
                     />
-                    <Card 
+                    <Card
+                        loading={summaryLoading} 
                         icon={wallet_saved_icon}
                         title="Total Saved"
                         amount={ summary ? currency(summary.totalSavings.amount)+" "+summary.totalSavings.currency : ""}
