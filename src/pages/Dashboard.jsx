@@ -167,23 +167,23 @@ const Dashboard = () => {
                         loading={summaryLoading} 
                         icon={wallet_green_icon}
                         title="Total Balance"
-                        amount={summary.totalBalance.amount}
-                        currency={summary.totalBalance.currency}
+                        amount={summary && summary.totalBalance.amount}
+                        currency={summary && summary.totalBalance.currency}
                         theme="dark"
                     />
                     <Card
                         loading={summaryLoading} 
                         icon={wallet_spend_icon}
                         title="Total Spending"
-                        amount={summary.totalExpense.amount}
-                        currency={summary.totalBalance.currency}
+                        amount={summary && summary.totalExpense.amount}
+                        currency={summary && summary.totalExpense.currency}
                     />
                     <Card
                         loading={summaryLoading} 
                         icon={wallet_saved_icon}
                         title="Total Saved"
-                        amount={summary.totalSavings.amount}
-                        currency={summary.totalBalance.currency}
+                        amount={summary && summary.totalSavings.amount}
+                        currency={summary && summary.totalExpense.currency}
                     />
                 </>
              }
