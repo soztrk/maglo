@@ -1,7 +1,8 @@
 import style from "./Card.module.scss"
 import { ShimmerCategoryItem } from "react-shimmer-effects"
+import currencyApp from "currency.js"
 
-const Card = ({icon,title,amount,theme,loading}) => {
+const Card = ({icon,title,amount,theme,loading,currency}) => {
     return(
         loading ? 
         <ShimmerCategoryItem
@@ -18,7 +19,7 @@ const Card = ({icon,title,amount,theme,loading}) => {
             </div>
             <div className={style.content}>
                 <h3>{title}</h3>
-                <div>{amount}</div>
+                <div>{currencyApp(amount).format()} {currency}</div>
             </div>
         </div>
     )

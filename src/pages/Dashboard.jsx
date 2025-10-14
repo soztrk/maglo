@@ -86,8 +86,8 @@ const Dashboard = () => {
                         let result = {pData:[],uData:[],xLabels:[],currency:response.data.currency}
                         
                         response.data.data.forEach(val=>{
-                            result.pData.push(currency(val.income))
-                            result.uData.push(currency(val.expense))
+                            result.pData.push(val.income)
+                            result.uData.push(val.expense)
                             result.xLabels.push(val.month)
                         })
 
@@ -167,20 +167,23 @@ const Dashboard = () => {
                         loading={summaryLoading} 
                         icon={wallet_green_icon}
                         title="Total Balance"
-                        amount={ summary ? currency(summary.totalBalance.amount)+" "+summary.totalBalance.currency : ""}
+                        amount={summary.totalBalance.amount}
+                        currency={summary.totalBalance.currency}
                         theme="dark"
                     />
                     <Card
                         loading={summaryLoading} 
                         icon={wallet_spend_icon}
                         title="Total Spending"
-                        amount={ summary ? currency(summary.totalExpense.amount)+" "+summary.totalExpense.currency : ""}
+                        amount={summary.totalExpense.amount}
+                        currency={summary.totalBalance.currency}
                     />
                     <Card
                         loading={summaryLoading} 
                         icon={wallet_saved_icon}
                         title="Total Saved"
-                        amount={ summary ? currency(summary.totalSavings.amount)+" "+summary.totalSavings.currency : ""}
+                        amount={summary.totalSavings.amount}
+                        currency={summary.totalBalance.currency}
                     />
                 </>
              }
@@ -223,8 +226,8 @@ const Dashboard = () => {
                                     key={val.id}
                                     image={val.image}
                                     name={val.name}
-                                    date={moment(val.date).format('Do MMMM YYYY, h:mm:ss a')} // human readable date format
-                                    amount={currency(val.amount)+" "+val.currency}
+                                    date={moment(val.date).format('MMMM Do YYYY, h:mm:ss a')}
+                                    amount={currency(val.amount).format()+" "+val.currency}
                                 />
                             ))
                         }

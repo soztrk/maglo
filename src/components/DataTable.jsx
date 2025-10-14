@@ -60,7 +60,7 @@ const DataTable = ({title,data,loading}) => {
                                     <span className={style.grayText}>{value.type}</span>
                                 </td>
                                 <td>
-                                    <span className={style.darkText}>{currency(value.amount)+" "+value.currency}</span>
+                                    <span className={style.darkText}>{currency(value.amount).format()+" "+value.currency}</span>
                                 </td>
                                 <td>
                                     <span className={style.grayText}>{moment(value.date).format('MMMM Do YYYY, h:mm:ss a')}</span>
