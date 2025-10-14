@@ -9,10 +9,13 @@
             padding-left:0;
 
             aside {
-                display: none;
+                visibility: hidden;
+                transform: translateX(-100%);
 
                 &.active{
-                    display: block;
+                    visibility: visible;
+                    transform:translateX(0);
+                    transition: transform 0.3s ease;
                 }
             }
         }
@@ -24,7 +27,7 @@
         height:100%;
         left:0;
         top:0;
-        z-index:999;
+        z-index:9999;
     }
 
     .content {
@@ -75,6 +78,10 @@
                             justify-content: center;
                             width:100%;
                         }
+                    
+                    @media (max-width:$sm) {
+                                gap: 20px;
+                            }
 
                     .userDropdown {
 
@@ -99,6 +106,10 @@
                             font-weight: 600;
                             margin-left:10px;
                             margin-right: 10px;
+
+                            @media (max-width:$sm) {
+                                display: none;
+                            }
                         }
 
                         > img {
@@ -106,6 +117,7 @@
                             height: 17px;
                             margin: 8px;
                         }
+                        
                     }
 
                     button.mobileNavButton{
@@ -137,6 +149,10 @@
                     display: grid;
                     grid-template-columns: repeat(auto-fit, 222px);
                     gap:10px;
+
+                    @media (max-width:$md) {
+                        justify-content: center;
+                    }
                 }
 
                 .chart{
@@ -147,7 +163,7 @@
             .rightBlock {
 
                 /* .wallet {
-                    
+                                          
                 } */
 
                 .shtrans{

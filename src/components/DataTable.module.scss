@@ -4,6 +4,7 @@
     border-radius: 10px;
     margin-top:20px;
     padding:20px;
+    overflow-x: auto;
 
     .headerLine {
 
@@ -32,6 +33,7 @@
     table{
         border-collapse: collapse;
         width: 100%;
+        min-width: 500px;
 
         tr {
 
