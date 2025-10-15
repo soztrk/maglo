@@ -32,17 +32,14 @@
 
     .content {
 
-        padding:20px 40px;
-
         header {
 
             .topBar{
 
                 display: flex;
-                margin-top: 22px;
                 margin-bottom: 22px;
-                padding-top:8px;
-                padding-bottom:8px;
+                padding:8px 40px;
+
                 background-color: $color_7;
 
                 @media (max-width:$md) {
@@ -64,6 +61,7 @@
                             justify-content: center;
                             width:100%;
                         }
+                    
                 }
 
                 .barRight{
@@ -142,6 +140,7 @@
             grid-template-columns: 2fr minmax(354px,1fr);
             justify-content: center;
             gap:40px;
+            padding:20px 40px;
 
             .centerBlock {
                 
