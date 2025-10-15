@@ -9,7 +9,7 @@ import useInput from "../hooks/useInput"
 import SignLink from "../components/SignLink"
 import HeaderGroup from "../components/HeaderGroup"
 import {useNavigate} from "react-router"
-import {setAccessToken} from "../helpers/auth"
+import {setAccessToken} from "../system/auth"
 
 const SignIn = () => {
 

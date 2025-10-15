@@ -9,3 +9,7 @@ export function setAccessToken(token){
 export function clearAccessToken(){
     localStorage.removeItem("accessToken")
 }
+
+export function isAuthenticated(){
+  return getAccessToken() != null
+}

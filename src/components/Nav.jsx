@@ -1,5 +1,5 @@
 import style from "./Nav.module.scss"
-import { clearAccessToken } from "../helpers/auth"
+import { clearAccessToken } from "../system/auth"
 import {useNavigate} from "react-router"
 
 // Icons
