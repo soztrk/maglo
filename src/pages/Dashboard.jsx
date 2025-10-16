@@ -6,12 +6,13 @@ import SimpleBar from "../components/SimpleBar"
 import HeaderLine from "../components/HeaderLine"
 import CreditCard from "../components/CreditCard"
 import useFetch from "../hooks/useFetch"
-import {useState,useEffect} from "react"
+import {useState,useEffect,useContext} from "react"
 import { getAccessToken } from "../system/auth"
 import currency from "currency.js"
 import moment from "moment"
 import toast from 'react-hot-toast'
 import { ShimmerCategoryItem } from "react-shimmer-effects"
+import UserContext from "../context/userContext"
 
 
 // Icon Images
@@ -26,6 +27,8 @@ const Dashboard = () => {
     const [recentTransactions,setRecentTransactions] = useState()
     const [scheduledTransfers,setScheduledTransfers] = useState()
     const [wallet,setWallet] = useState([0,1])
+
+    const {user,setUser} = useContext(UserContext)
 
     const {
         loading:summaryLoading,
@@ -50,6 +53,10 @@ const Dashboard = () => {
     const {
         loading:walletLoading,
         sendRequest:walletRequest
+    } = useFetch()
+
+    const {
+        sendRequest:userRequest
     } = useFetch()
 
     useEffect(()=>{
@@ -157,11 +164,29 @@ const Dashboard = () => {
                     }
                 }
             )
+        
+        // User
+        if(!user){
+            userRequest(
+                {
+                    url:`https://case.nodelabs.dev/api/users/profile`,
+                    method:"GET",
+                    apiKey:getAccessToken(),
+                },
+                response=>{
+
+                    if(response.success){
+                        setUser(response.data)
+                    }
+                }
+            )
+        }
 
     },[])
 
     return (
-        <DashboardLayout 
+        <DashboardLayout
+            userName={user?.fullName} 
             cards={
                 <>
                     <Card

@@ -3,13 +3,14 @@ import TextField from "../components/TextField"
 import Button from "../components/Button"
 import Validator from "../helpers/validator"
 import useFetch from "../hooks/useFetch"
-import {useState,useEffect} from "react"
+import {useState,useEffect,useContext} from "react"
 import toast from 'react-hot-toast'
 import useInput from "../hooks/useInput"
 import SignLink from "../components/SignLink"
 import HeaderGroup from "../components/HeaderGroup"
 import {useNavigate} from "react-router"
 import {setAccessToken} from "../system/auth"
+import UserContext from "../context/userContext"
 
 const SignIn = () => {
 
@@ -40,6 +41,8 @@ const SignIn = () => {
         sendRequest
     } = useFetch()
 
+    const {setUser} = useContext(UserContext)
+
     const handleSubmit = (event) => {
 
         event.preventDefault()
@@ -62,6 +65,7 @@ const SignIn = () => {
                     if(response.success){
                         toast.success(response.message)
                         setAccessToken(response.data.accessToken)
+                        setUser(response.data.user)
                         navigate("/")
                     }
                     else{

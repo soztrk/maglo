@@ -15,7 +15,7 @@ import menu_icon from "../assets/img/menu_icon.svg"
 // Dummy Avatar
 import avatar from "../assets/img/avatar.png"
 
-const DashboardLayout = ({header={absolute:false,sticky:true,offest:100},cards,chart,recentTransaction,wallet,scheduledTransfers}) => {
+const DashboardLayout = ({header={absolute:false,sticky:true,offest:100},cards,chart,recentTransaction,wallet,scheduledTransfers,userName}) => {
 
     const [mobileNavActive,setMobileNavActive] = useState(false)
 
@@ -49,7 +49,7 @@ const DashboardLayout = ({header={absolute:false,sticky:true,offest:100},cards,c
                                 <div>
                                     <img src={avatar} />
                                 </div>
-                                <span>Mahfuzul Nabil</span>
+                                <span>{userName}</span>
                                 <img src={dropdown_icon} />
                             </div>
                             <button className={style.mobileNavButton} onClick={handleMobileNav}>
